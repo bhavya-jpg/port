@@ -12,24 +12,22 @@ export default function Cursor() {
     const xTo = gsap.quickTo(el, 'x', { duration: 0.35, ease: 'power3' });
     const yTo = gsap.quickTo(el, 'y', { duration: 0.35, ease: 'power3' });
 
-    const onMove = (e: MouseEvent) => { xTo(e.clientX); yTo(e.clientY); };
-    const onEnter = () => el.classList.add('big');
-    const onLeave = () => el.classList.remove('big');
+    const onMove = (e: MouseEvent) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+      
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, [data-cursor]')) {
+        el.classList.add('big');
+      } else {
+        el.classList.remove('big');
+      }
+    };
 
     window.addEventListener('mousemove', onMove);
 
-    const targets = document.querySelectorAll('a, button, [data-cursor]');
-    targets.forEach((t) => {
-      t.addEventListener('mouseenter', onEnter);
-      t.addEventListener('mouseleave', onLeave);
-    });
-
     return () => {
       window.removeEventListener('mousemove', onMove);
-      targets.forEach((t) => {
-        t.removeEventListener('mouseenter', onEnter);
-        t.removeEventListener('mouseleave', onLeave);
-      });
     };
   }, []);
 

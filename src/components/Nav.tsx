@@ -1,67 +1,102 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'Works', href: '#works' },
-  { label: 'Services', href: '#services' },
-  { label: 'Founder', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Founder', href: '/founder' },
+  { label: 'Home', href: '/' },
+  { label: 'Work', href: '/work' },
+  { label: 'Open Source & Recognition', href: '/open-source' },
+  { label: 'Services', href: '/services' },
+  { label: 'Contact', href: '/contact' },
 ];
 
-export default function Nav() {
+export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(!hideOnTop);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 60);
+      if (hideOnTop) {
+        // Show navbar as soon as user scrolls into the black screen (180px+)
+        setVisible(y >= 180);
+      } else {
+        setVisible(true);
+      }
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [hideOnTop]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'py-3' : 'py-6'
-        }`}
+          visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        } ${scrolled ? 'py-3.5 bg-black/85 backdrop-blur-lg border-b border-white/10' : 'py-6'}`}
       >
         <div className="mx-auto flex items-center justify-between px-6 md:px-10">
           {/* Circular logo */}
-          <motion.a
-            href="#home"
+          <motion.div
             initial={{ scale: 0, rotate: -90 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             className={`relative flex items-center justify-center rounded-full transition-all duration-500 ${
-              scrolled ? 'w-14 h-14' : 'w-16 h-16 md:w-20 md:h-20'
-            } bg-white`}
+              scrolled ? 'w-12 h-12 md:w-14 md:h-14' : 'w-16 h-16 md:w-20 md:h-20'
+            } bg-white shadow-lg`}
           >
-            <span className="font-serif italic font-medium text-black text-sm md:text-base">
-              SC
-            </span>
-          </motion.a>
+            <Link to="/" className="w-full h-full flex items-center justify-center rounded-full">
+              <span className="font-serif italic font-bold text-black text-sm md:text-base">
+                SC
+              </span>
+            </Link>
+          </motion.div>
 
-          {/* Desktop links */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop links with Spotlight Glow & Larger Typography */}
+          <nav
+            onMouseMove={handleMouseMove}
+            className="hidden md:flex items-center gap-2 lg:gap-3 bg-white/5 p-2 rounded-full border border-white/15 backdrop-blur-md relative group/nav overflow-hidden"
+          >
+            {/* Mouse Spotlight Element */}
+            <div
+              className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100"
+              style={{
+                background: `radial-gradient(220px circle at ${mousePos.x}px ${mousePos.y}px, rgba(186, 62, 43, 0.35), transparent 80%)`,
+              }}
+            />
+
             {links.map((l, i) => (
-              <motion.a
+              <motion.div
                 key={l.label}
-                href={l.href}
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.08 }}
-                className="nav-link text-sm font-medium text-white mix-blend-difference"
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.06 }}
+                className="relative z-10"
               >
-                {l.label}
-              </motion.a>
+                <Link
+                  to={l.href}
+                  className="px-4 py-2 rounded-full text-xs lg:text-sm font-sans font-bold uppercase tracking-wider text-white/90 hover:text-white hover:bg-white/15 transition-all duration-300 block select-none"
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center"
+            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center mix-blend-difference"
             aria-label="Open menu"
           >
             <div className="flex flex-col gap-1.5">
@@ -89,17 +124,20 @@ export default function Nav() {
               ✕
             </button>
             {links.map((l, i) => (
-              <motion.a
+              <motion.div
                 key={l.label}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 + i * 0.08 }}
-                className="font-serif text-5xl italic font-medium text-white"
               >
-                {l.label}
-              </motion.a>
+                <Link
+                  to={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-serif text-5xl italic font-medium text-white"
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}

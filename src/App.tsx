@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Routes, Route } from 'react-router-dom';
 import Cursor from './components/Cursor';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import About from './components/About';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import Home from './pages/Home';
+import Work from './pages/Work';
+import Services from './pages/Services';
+import Founder from './pages/Founder';
+import Contact from './pages/Contact';
+import OpenSource from './pages/OpenSource';
 
 function Preloader({ done }: { done: boolean }) {
   const [count, setCount] = useState(0);
@@ -40,7 +41,7 @@ function Preloader({ done }: { done: boolean }) {
               animate={{ opacity: 1, scale: 1 }}
               className="font-serif italic font-medium text-6xl md:text-8xl text-white"
             >
-              Sandra<span className="text-red">.</span>
+              Bhavya<span className="text-[#BA3E2B]">.</span>
             </motion.div>
             <div className="mt-4 text-sm uppercase tracking-[0.4em] text-white/40">
               {count}%
@@ -64,15 +65,15 @@ export default function App() {
     <>
       <Preloader done={loaded} />
       <Cursor />
-      <Nav />
-      <main>
-        <Hero />
-        <Services />
-        <About />
-        <Testimonials />
-        <FAQ />
-        <Footer />
-      </main>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/work" element={<Work />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/open-source" element={<OpenSource />} />
+        <Route path="/founder" element={<Founder />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </>
   );
 }

@@ -20,7 +20,7 @@ export default function Hero() {
         animate={{ opacity: 1, x: 0, rotate: 0 }}
         transition={{ delay: 0.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
         src="https://framerusercontent.com/images/K5dcAtPFRZvYkHUaCwPbsnpSUjI.png?width=1533&height=1767"
-        alt="Sandra mascot"
+        alt="Bhavya mascot"
         className="absolute right-0 bottom-0 h-[80vh] md:h-[95vh] object-contain z-0 pointer-events-none select-none"
         style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent)' }}
       />
@@ -34,7 +34,7 @@ export default function Hero() {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             className="font-serif italic font-medium text-[20vw] md:text-[16vw] lg:text-[15rem] leading-[0.85] tracking-[-0.04em]"
           >
-            Sandra
+            Bhavya
           </motion.h1>
         </div>
         <div className="overflow-hidden flex items-end gap-4 md:gap-8">

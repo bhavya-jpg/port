@@ -21,7 +21,7 @@ body {
 }
 
 ::selection {
-  background: #f03e2f;
+  background: #BA3E2B;
   color: #fff;
 }
 
@@ -30,7 +30,7 @@ body {
   position: fixed;
   width: 12px;
   height: 12px;
-  background: #f03e2f;
+  background: #BA3E2B;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -42,8 +42,8 @@ body {
 .cursor.big {
   width: 56px;
   height: 56px;
-  background: rgba(240, 62, 47, 0.25);
-  border: 1.5px solid #f03e2f;
+  background: rgba(186, 62, 43, 0.25);
+  border: 1.5px solid #BA3E2B;
 }
 
 @media (max-width: 768px) {

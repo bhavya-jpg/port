@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const testimonials = [
   {
-    quote: 'Working with Sandra has been an absolute pleasure. Her creativity, distinctive style, and attention to detail consistently result in high-quality outputs that exceed expectations.',
+    quote: 'Working with Bhavya has been an absolute pleasure. Her creativity, distinctive style, and attention to detail consistently result in high-quality outputs that exceed expectations.',
     name: 'Michelle Castro',
     role: 'Communication and Content Specialist at Envato',
     avatar: 'https://framerusercontent.com/images/LE1KWilZxIZQiAqo0gvGNVJcFk.jpeg?width=170&height=162',
@@ -16,7 +16,7 @@ const testimonials = [
     color: '#cc7a97',
   },
   {
-    quote: 'Sandra, A brilliant creative but more importantly, a wonderful human being. Expected exquisiteness, experienced and received better.',
+    quote: 'Bhavya, A brilliant creative but more importantly, a wonderful human being. Expected exquisiteness, experienced and received better.',
     name: 'Charbel Maalouf',
     role: 'Founder',
     avatar: 'https://framerusercontent.com/images/MQjCZAIr53tBxZmlqa6rtZEMGS0.jpeg?width=510&height=559',
