@@ -98,7 +98,7 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center mix-blend-difference"
+            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center relative z-50 shadow-md pointer-events-auto"
             aria-label="Open menu"
           >
             <div className="flex flex-col gap-1.5">

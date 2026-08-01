@@ -231,7 +231,7 @@ export default function CameraRevealHero() {
           <svg
             ref={svgRef}
             viewBox="0 0 600 600"
-            className="w-[480px] h-[480px] sm:w-[640px] sm:h-[640px] md:w-[760px] md:h-[760px] drop-shadow-2xl overflow-visible"
+            className="w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] md:w-[760px] md:h-[760px] drop-shadow-2xl overflow-visible"
           >
             <g ref={cameraBodyGroupRef}>
               <path id="viewfinderHump" d="M 230 182 L 275 182 L 285 205 L 220 205 Z" fill="#16191E" stroke="#090A0C" strokeWidth="2" />

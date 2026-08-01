@@ -105,7 +105,7 @@ export default function Footer({ showRedCard = false }: { showRedCard?: boolean 
 
         {/* Massive BHAVYA Text */}
         <div className="w-full mt-24 md:mt-32 overflow-hidden flex justify-center items-center select-none pointer-events-none">
-          <h1 className="font-sans font-black text-[22vw] leading-[0.75] tracking-tighter text-white w-full text-center">
+          <h1 className="font-sans font-black text-[22vw] leading-[0.75] tracking-tighter text-white w-full text-center whitespace-nowrap">
             BHAVYA
           </h1>
         </div>

@@ -522,7 +522,7 @@ export default function Founder() {
       <section className="relative w-full py-24 bg-[#0a0a0a] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[#BA3E2B] font-bold mb-4">Professional Experience</p>
-          <div className="p-12 md:p-20 rounded-3xl bg-[#0c0e14] border border-white/5 border-dashed flex flex-col items-center justify-center">
+          <div className="p-8 md:p-20 rounded-3xl bg-[#0c0e14] border border-white/5 border-dashed flex flex-col items-center justify-center">
             <h2 className="text-3xl md:text-5xl font-serif italic text-white/40">Coming Soon</h2>
           </div>
         </div>

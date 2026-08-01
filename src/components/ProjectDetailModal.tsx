@@ -71,7 +71,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose, projectIn
             </div>
 
             {/* 2-Column Content */}
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 p-8 md:p-12 lg:p-16">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 p-6 md:p-12 lg:p-16">
               
               {/* Left Sidebar: Meta Fields */}
               <div className="lg:w-1/3 shrink-0 flex flex-col gap-8">
