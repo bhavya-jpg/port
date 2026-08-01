@@ -234,16 +234,16 @@ export default function CameraRevealHero() {
             className="w-[320px] h-[320px] sm:w-[480px] sm:h-[480px] md:w-[760px] md:h-[760px] drop-shadow-2xl overflow-visible"
           >
             <g ref={cameraBodyGroupRef}>
-              <path id="viewfinderHump" d="M 230 182 L 275 182 L 285 205 L 220 205 Z" fill="#050505" stroke="#000000" strokeWidth="2" />
-              <rect x="238" y="188" width="28" height="6" rx="2" fill="#111111" />
-              <ellipse id="topDial" cx="375" cy="195" rx="16" ry="7" fill="#0A0A0A" stroke="#000000" strokeWidth="2" />
-              <rect x="365" y="190" width="20" height="4" fill="#111111" rx="1" />
-              <rect id="shutterButton" x="425" y="190" width="24" height="15" rx="3" fill="#1A1A1A" stroke="#000000" strokeWidth="2" />
+              <path id="viewfinderHump" d="M 230 182 L 275 182 L 285 205 L 220 205 Z" fill="#16191E" stroke="#090A0C" strokeWidth="2" />
+              <rect x="238" y="188" width="28" height="6" rx="2" fill="#2E3440" />
+              <ellipse id="topDial" cx="375" cy="195" rx="16" ry="7" fill="#1E2229" stroke="#090A0C" strokeWidth="2" />
+              <rect x="365" y="190" width="20" height="4" fill="#3A404D" rx="1" />
+              <rect id="shutterButton" x="425" y="190" width="24" height="15" rx="3" fill="#2E343F" stroke="#090A0C" strokeWidth="2" />
               <rect x="429" y="186" width="16" height="5" rx="1" fill="#A63A3A" />
-              <path id="grip" d="M 455 215 C 470 235, 470 375, 455 395 Z" fill="#000000" />
-              <rect id="cameraBody" x="140" y="205" width="320" height="195" rx="24" fill="#050505" stroke="#000000" strokeWidth="3" />
-              <rect x="140" y="225" width="320" height="3" fill="#1A1A1A" />
-              <rect x="132" y="270" width="8" height="24" rx="2" fill="#111111" />
+              <path id="grip" d="M 455 215 C 470 235, 470 375, 455 395 Z" fill="#0D0F12" />
+              <rect id="cameraBody" x="140" y="205" width="320" height="195" rx="24" fill="#16191E" stroke="#090A0C" strokeWidth="3" />
+              <rect x="140" y="225" width="320" height="3" fill="#282D37" />
+              <rect x="132" y="270" width="8" height="24" rx="2" fill="#2E343F" />
             </g>
             <circle ref={lensRingRef} cx="330" cy="305" r="92" fill="none" stroke="#A63A3A" strokeWidth="9" className="origin-[330px_305px]" />
           </svg>
@@ -266,7 +266,7 @@ export default function CameraRevealHero() {
 
       <div
         ref={darkLayerRef}
-        className="absolute inset-0 w-full h-full z-30 flex flex-col justify-center items-center px-6 md:px-16 pt-16 pb-10 bg-[#000000] text-white overflow-y-auto"
+        className="absolute inset-0 w-full h-full z-30 flex flex-col justify-center items-center px-6 md:px-16 pt-16 pb-10 bg-[#09090b] text-white overflow-y-auto"
       >
         <div ref={aboutSectionContentRef} className="max-w-5xl w-full mx-auto space-y-12 my-auto flex flex-col items-center">
           <div className="text-center space-y-8 w-full">
