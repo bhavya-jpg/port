@@ -4,25 +4,17 @@ import { Plus } from 'lucide-react';
 
 const faqs = [
   {
-    q: 'What services do you offer?',
-    a: 'We specialize in brand identity, website design, and video editing & motion design. You can work with us on a single service or combine them for a more cohesive result.',
+    q: 'Can I hire you for video editing or cinematography?',
+    a: 'First of all, no. I only do cinematography for myself. I have tried doing freelance, but I did not like the feeling of working or editing for anyone else. It is something I strictly do for my own projects. However, I am very much open to full-time internships and freelance development projects.',
   },
   {
-    q: 'How long does a project usually take?',
-    a: "Timelines vary depending on scope, but most projects take between 2-6 weeks. We'll always confirm timing before we start so expectations are clear from day one.",
+    q: 'Are you available for freelance development work?',
+    a: 'Yes! I am actively looking for full-time roles, internships, and freelance software development projects. Feel free to reach out if you have an engineering project in mind.',
   },
   {
-    q: 'What do you need from me to get started?',
-    a: "Once we agree to work together, you'll receive a simple onboarding form to help us understand your goals, brand, and vision. From there, we guide you through the rest.",
-  },
-  {
-    q: 'How do pricing and payments work?',
-    a: 'Pricing depends on the scope of the project. We offer clear packages and custom quotes, with a deposit required to secure your spot before work begins.',
-  },
-  {
-    q: 'Do you offer ongoing support or retainers?',
-    a: "Yes. We offer ongoing support and retainer options for clients who need continuous design, editing, or website updates. Retainers are flexible and tailored to your needs, and we'll always recommend them only if they genuinely make sense for your project.",
-  },
+    q: 'What technologies do you specialize in?',
+    a: 'I specialize in full-stack development, particularly with React, Next.js, Node.js, TypeScript, Python, and AI integrations (like Gemini).',
+  }
 ];
 
 function FaqItem({ item, i }: { item: (typeof faqs)[0]; i: number }) {
@@ -38,8 +30,8 @@ function FaqItem({ item, i }: { item: (typeof faqs)[0]; i: number }) {
         className="w-full flex items-center justify-between gap-6 py-7 md:py-9 text-left group"
       >
         <span className="flex items-baseline gap-5">
-          <span className="text-xs text-red tracking-[0.2em] font-medium">0{i + 1}</span>
-          <span className="font-serif italic font-medium text-2xl md:text-4xl text-white group-hover:text-red transition-colors duration-300">
+          <span className="text-xs text-[#BA3E2B] tracking-[0.2em] font-medium">0{i + 1}</span>
+          <span className="font-serif italic font-medium text-2xl md:text-4xl text-white group-hover:text-[#BA3E2B] transition-colors duration-300">
             {item.q}
           </span>
         </span>

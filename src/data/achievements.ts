@@ -7,21 +7,39 @@ export interface AchievementData {
 
 export const achievementsData: AchievementData[] = [
   {
-    eventName: "Global AI Hackathon",
-    result: "1st Place",
+    eventName: "Google Solution Challenge",
+    result: "Top 50 Team",
+    year: "2026",
+    linkTo: "/work"
+  },
+  {
+    eventName: "Electrothon 8.0",
+    result: "Winner, Best Use of Gemini & 3rd Place IQ AI Track",
     year: "2025",
     linkTo: "/work"
   },
   {
-    eventName: "Social Winter of Code",
-    result: "Top Contributor",
-    year: "2024",
-    linkTo: "/open-source"
+    eventName: "Hack On Hills 7.0 / NIMBUS",
+    result: "Winner, Best Web3 Project",
+    year: "2026",
+    linkTo: "/work"
   },
   {
-    eventName: "Web3 Buildathon",
-    result: "Top 10 Finalist",
-    year: "2024",
+    eventName: "Smart India Hackathon (SIH) Offline Round",
+    result: "Top 20 Finalist",
+    year: "2025",
+    linkTo: "/work"
+  },
+  {
+    eventName: "Prodygiki",
+    result: "Winner, Breach-o-Breach & Runner-up, OHM Alone",
+    year: "2025",
+    linkTo: "/work"
+  },
+  {
+    eventName: "AI Impact Summit — Youth Program (YUVAi Global Youth Challenge)",
+    result: "Top 200 (Selected from 2,400+ nationwide for [project name])",
+    year: "2026",
     linkTo: "/work"
   }
 ];

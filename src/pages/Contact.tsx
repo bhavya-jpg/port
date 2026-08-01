@@ -9,7 +9,7 @@ export default function Contact() {
       <main className="flex-1 flex flex-col">
         <ContactSection />
       </main>
-      <Footer />
+      <Footer showRedCard={true} />
     </div>
   );
 }

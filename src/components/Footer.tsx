@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import { Linkedin, Instagram, Mail, Github } from 'lucide-react';
 import { contactData } from '../data/contact';
 
-export default function Footer() {
+export default function Footer({ showRedCard = false }: { showRedCard?: boolean }) {
   return (
     <footer className="relative bg-black text-white overflow-hidden">
       {/* Half Camera & Contacts Section with Red Background */}
+      {showRedCard && (
       <div className="bg-[#BA3E2B] text-white pt-16 md:pt-20 pb-12 px-6 md:px-10 relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-center relative z-10">
           <div className="max-w-2xl">
@@ -59,19 +60,14 @@ export default function Footer() {
           </svg>
         </div>
       </div>
+      )}
 
       {/* Footer bottom */}
       <div className="border-t border-white/10 px-6 md:px-10 py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
           {/* Logo */}
           <div className="col-span-2 md:col-span-2">
-            <motion.img
-              src="https://framerusercontent.com/images/oT5qz4Jw0jJ4uwB3OUGcB3pYOY.svg?width=653&height=692"
-              alt="Bhavya Aggarwal logo"
-              className="w-16 h-16 mb-4"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-            />
+
             <p className="font-serif italic font-medium text-2xl">Bhavya Aggarwal™</p>
             <p className="text-sm text-white/40 mt-1">Creative Studio</p>
           </div>

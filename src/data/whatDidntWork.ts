@@ -8,20 +8,20 @@ export interface SetbackItem {
 export const setbacksList: SetbackItem[] = [
   {
     id: "s1",
-    title: "Open Source Fellowship Rejection (Round 3)",
-    context: "Spent 4 weeks preparing a heavy PR and proposal for a high-profile open-source fellowship, only to get cut in the final interview stage.",
-    takeaway: "Lesson: The depth of code contributed wasn't lost—those PRs became my strongest public portfolio proof."
+    title: "Not Selected for GSoC",
+    context: "Applied through OpenMRS and was recognized as a top contributor to the organization, but wasn't officially selected for Google Summer of Code.",
+    takeaway: "Lesson: Contribution quality outlasts selection outcomes — those merged PRs became real, lasting proof of work regardless of the GSoC decision."
   },
   {
     id: "s2",
-    title: "First Hackathon Build Over-Engineering",
-    context: "Attempted a complex multi-agent AI architecture in 24 hours. The backend worked locally, but presentation demo crashed 5 minutes before judging.",
-    takeaway: "Lesson: A flawless simple demo beats an unfinished complex architecture every single time."
+    title: "Y Combinator — Not Selected",
+    context: "Applied with KinetixVerse, wasn't selected.",
+    takeaway: "Lesson: The application process forced sharper thinking on market sizing, distribution, and why now — useful even without acceptance."
   },
   {
     id: "s3",
-    title: "Early Short Film Lighting Failure",
-    context: "Shot a night scene on location without proper key lights, relying on ambient streetlamps. The raw footage was unusable due to sensor noise.",
-    takeaway: "Lesson: Pre-visualization and light tests are non-negotiable before rolling camera."
+    title: "Early Hackathon Losses",
+    context: "Didn't advance past the first round in several early hackathons before finding traction.",
+    takeaway: "Lesson: Losing early forced faster iteration on scoping and pitching — the wins that came later built directly on those repeated early losses."
   }
 ];

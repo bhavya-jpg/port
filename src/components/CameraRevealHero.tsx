@@ -11,7 +11,7 @@ const HERO_CONFIG = {
   branding: "Bhavya Creates™",
   taglinePart1: "Code by Day",
   taglinePart2: "Film by Night",
-  landingBg: "#BA3E2B",
+  landingBg: "#A63A3A",
   darkBg: "#09090b",
   skills: [
     {
@@ -215,11 +215,11 @@ export default function CameraRevealHero() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen overflow-hidden select-none bg-[#BA3E2B]">
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden select-none bg-[#A63A3A]">
 
       <div
         ref={landingRef}
-        className="absolute inset-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 md:p-16 z-10 bg-[#BA3E2B]"
+        className="absolute inset-0 w-full h-full flex flex-col justify-between p-8 sm:p-12 md:p-16 z-10 bg-[#A63A3A]"
       >
         <div ref={brandRef} className="z-20 pt-2 sm:pt-4">
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow-lg">
@@ -239,13 +239,13 @@ export default function CameraRevealHero() {
               <ellipse id="topDial" cx="375" cy="195" rx="16" ry="7" fill="#1E2229" stroke="#090A0C" strokeWidth="2" />
               <rect x="365" y="190" width="20" height="4" fill="#3A404D" rx="1" />
               <rect id="shutterButton" x="425" y="190" width="24" height="15" rx="3" fill="#2E343F" stroke="#090A0C" strokeWidth="2" />
-              <rect x="429" y="186" width="16" height="5" rx="1" fill="#BA3E2B" />
+              <rect x="429" y="186" width="16" height="5" rx="1" fill="#A63A3A" />
               <path id="grip" d="M 455 215 C 470 235, 470 375, 455 395 Z" fill="#0D0F12" />
               <rect id="cameraBody" x="140" y="205" width="320" height="195" rx="24" fill="#16191E" stroke="#090A0C" strokeWidth="3" />
               <rect x="140" y="225" width="320" height="3" fill="#282D37" />
               <rect x="132" y="270" width="8" height="24" rx="2" fill="#2E343F" />
             </g>
-            <circle ref={lensRingRef} cx="330" cy="305" r="92" fill="none" stroke="#BA3E2B" strokeWidth="9" className="origin-[330px_305px]" />
+            <circle ref={lensRingRef} cx="330" cy="305" r="92" fill="none" stroke="#A63A3A" strokeWidth="9" className="origin-[330px_305px]" />
           </svg>
         </div>
 
@@ -272,7 +272,7 @@ export default function CameraRevealHero() {
           <div className="text-center space-y-8 w-full">
             <h2 ref={aboutTextRef} className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.25] max-w-4xl mx-auto text-white">
               <span className="word-chunk inline-block">A&nbsp;</span>
-              <span className="word-chunk inline-block text-[#BA3E2B]">developer&nbsp;</span>
+              <span className="word-chunk inline-block text-[#A63A3A]">developer&nbsp;</span>
               <span className="word-chunk inline-block">and&nbsp;</span>
               <span className="word-chunk inline-block text-[#F43F5E] italic font-serif">cinematographer&nbsp;</span>
               <span className="word-chunk inline-block text-[#3B82F6]">building software&nbsp;</span>

@@ -1,12 +1,49 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
-import { GitPullRequest, Star, GitFork, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { githubData } from '../data/github';
+
+interface LiveStats {
+  repos: number | string;
+  prs: number | string;
+  followers: number | string;
+}
 
 export default function GitHubShowcase() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
+  const [stats, setStats] = useState<LiveStats>({ repos: '-', prs: '-', followers: '-' });
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        // Fetch user data (repos, followers)
+        const userRes = await fetch(`https://api.github.com/users/${githubData.username}`);
+        const userData = await userRes.json();
+        
+        // Fetch PR count (search API)
+        const prsRes = await fetch(`https://api.github.com/search/issues?q=type:pr+author:${githubData.username}`);
+        const prsData = await prsRes.json();
+
+        setStats({
+          repos: userData.public_repos ?? '-',
+          prs: prsData.total_count ?? '-',
+          followers: userData.followers ?? '-'
+        });
+      } catch (error) {
+        console.error("Failed to fetch GitHub stats:", error);
+      }
+    }
+    
+    fetchStats();
+  }, []);
+
+  const statCards = [
+    { label: "Repositories", value: stats.repos },
+    { label: "Pull Requests", value: stats.prs },
+    { label: "Followers", value: stats.followers }
+  ];
 
   return (
     <section id="opensource" ref={ref} className="relative bg-[#0a0a0a] text-white py-24 md:py-40 px-6 md:px-10 border-t border-white/5 overflow-hidden">
@@ -24,17 +61,17 @@ export default function GitHubShowcase() {
           </a>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {githubData.stats.map((stat, i) => (
+        {/* Live Stats Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {statCards.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ y: 20, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/5 border border-white/5"
+              className="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center justify-center text-center"
             >
-              <div className="text-3xl md:text-4xl font-serif italic font-medium text-white mb-2">{stat.value}</div>
+              <div className="text-4xl md:text-5xl font-serif italic font-medium text-white mb-2">{stat.value}</div>
               <div className="text-xs uppercase tracking-widest text-white/40">{stat.label}</div>
             </motion.div>
           ))}
@@ -61,70 +98,6 @@ export default function GitHubShowcase() {
             />
           </div>
         </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Pinned Repos */}
-          <div>
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-              <Star size={18} className="text-[#BA3E2B]" /> Pinned Repositories
-            </h3>
-            <div className="flex flex-col gap-4">
-              {githubData.pinnedRepos.map((repo, i) => (
-                <motion.a
-                  href={repo.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={repo.name}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={inView ? { x: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="group block p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 transition-colors"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-bold text-lg text-[#BA3E2B] group-hover:text-white transition-colors">{repo.name}</h4>
-                    <div className="flex gap-4 text-xs text-white/40">
-                      <span className="flex items-center gap-1"><Star size={14} /> {repo.stars}</span>
-                      <span className="flex items-center gap-1"><GitFork size={14} /> {repo.forks}</span>
-                    </div>
-                  </div>
-                  <p className="text-white/60 text-sm mb-4 leading-relaxed">{repo.description}</p>
-                  <div className="flex items-center gap-2 text-xs font-medium text-white/30">
-                    <span className="w-2 h-2 rounded-full bg-[#BA3E2B]" /> {repo.language}
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Merged PRs */}
-          <div>
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-              <GitPullRequest size={18} className="text-[#BA3E2B]" /> Merged Pull Requests
-            </h3>
-            <div className="flex flex-col gap-4">
-              {githubData.mergedPRs.map((pr, i) => (
-                <motion.a
-                  href={pr.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={pr.title}
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={inView ? { x: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="group block p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 transition-colors"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs font-bold uppercase tracking-widest text-white/40">{pr.repo}</span>
-                    <span className="text-xs text-white/30">{pr.date}</span>
-                  </div>
-                  <h4 className="font-medium text-white group-hover:text-[#BA3E2B] transition-colors leading-relaxed">
-                    {pr.title}
-                  </h4>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

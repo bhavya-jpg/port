@@ -17,37 +17,27 @@ export const openSourcePrograms: OpenSourceProgram[] = [
     id: "swoc",
     name: "Social Winter of Code",
     organization: "Script Foundation",
-    duration: "Jan 2024 - Mar 2024",
+    duration: "Jan 2026 - Present",
     role: "Open Source Contributor",
-    description: "Contributed to multiple projects by fixing critical bugs, improving documentation, and adding new features. Mentored newcomers in the open-source community.",
-    links: {
-      prs: "https://github.com/placeholder-swoc-prs",
-      repo: "https://github.com/placeholder-swoc-repo",
-      certificate: "https://placeholder-swoc-cert.com"
-    }
+    description: "Contributed to open-source projects across varied tech stacks, resolving issues with production-ready implementations.",
+    links: {}
   },
   {
     id: "osgc",
     name: "Open Source Global Connect",
     organization: "OSGC",
-    duration: "Jun 2023 - Aug 2023",
-    role: "Core Contributor",
-    description: "Collaborated with international developers to build tools for the open-source ecosystem. Achieved top contributor status during the program.",
-    links: {
-      prs: "https://github.com/placeholder-osgc-prs",
-      repo: "https://github.com/placeholder-osgc-repo"
-    }
+    duration: "Feb 2026 - Present",
+    role: "Campus Lead",
+    description: "Championed open-source awareness and community-building. Integrated 100+ students into contribution pipelines and ran onboarding workshops.",
+    links: {}
   },
   {
-    id: "gsoc-org",
-    name: "Major Open Source Project",
-    organization: "[GSoC-affiliated Org Name]",
-    duration: "Sep 2023 - Dec 2023",
-    role: "Top Contributor",
-    description: "Consistently delivered high-quality pull requests, optimizing database queries and resolving complex UI state issues. Recognized as a top contributor for outstanding impact.",
-    links: {
-      prs: "https://github.com/placeholder-gsoc-prs",
-      repo: "https://github.com/placeholder-gsoc-repo"
-    }
+    id: "openmrs",
+    name: "OpenMRS",
+    organization: "OpenMRS",
+    duration: "Nov 2025 - Present",
+    role: "Open Source Contributor, Top Contributor",
+    description: "Ranked among top contributors to the global OpenMRS open-source healthcare platform with 12+ merged PRs. Collaborated globally on performance optimization and documentation.",
+    links: {}
   }
 ];

@@ -42,19 +42,15 @@ export const recognitionData = [
 
 export const howIWorkData = [
   {
+    question: 'Can I hire you for video editing or cinematography?',
+    answer: 'First of all, no. I only do cinematography for myself. I have tried doing freelance, but I did not like the feeling of working or editing for anyone else. It is something I strictly do for my own projects.'
+  },
+  {
     question: 'Are you currently open to full-time roles or internships?',
     answer: 'Yes. I am actively seeking software engineering internships and open to exciting full-time roles where I can contribute to impactful products.'
   },
   {
     question: 'Do you take on freelance development projects?',
-    answer: 'I do. Depending on my current bandwidth, I take on select freelance projects ranging from web development to AI prototyping.'
-  },
-  {
-    question: 'Can I hire you for video editing or cinematography?',
-    answer: 'Absolutely. I balance my engineering work with freelance cinematography and editing for brands, artists, and events.'
-  },
-  {
-    question: 'How quickly do you usually respond to inquiries?',
-    answer: 'I aim to respond to all serious inquiries within 24-48 hours. For urgent freelance requests, please indicate the timeline in your message.'
+    answer: 'I do. Depending on my current bandwidth, I take on select freelance projects ranging from web development to AI prototyping. Feel free to reach out if you have an engineering project in mind.'
   }
 ];

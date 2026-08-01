@@ -22,8 +22,8 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
       const y = window.scrollY;
       setScrolled(y > 60);
       if (hideOnTop) {
-        // Show navbar as soon as user scrolls into the black screen (180px+)
-        setVisible(y >= 180);
+        // Show navbar as soon as user scrolls into the black screen cinematography text
+        setVisible(y >= window.innerHeight * 3.5);
       } else {
         setVisible(true);
       }
@@ -51,13 +51,15 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
             initial={{ scale: 0, rotate: -90 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className={`relative flex items-center justify-center rounded-full transition-all duration-500 ${
+            className={`relative flex items-center justify-center rounded-full bg-white text-black font-serif italic font-bold tracking-tighter ${
               scrolled ? 'w-12 h-12 md:w-14 md:h-14' : 'w-16 h-16 md:w-20 md:h-20'
-            } bg-white shadow-lg`}
+            } transition-all duration-300 shadow-xl`}
           >
             <Link to="/" className="w-full h-full flex items-center justify-center rounded-full">
-              <span className="font-serif italic font-bold text-black text-sm md:text-base">
-                SC
+              <span className={`absolute leading-none ${
+                scrolled ? 'text-xl md:text-2xl top-[14px] md:top-[16px]' : 'text-3xl md:text-4xl top-[18px] md:top-[22px]'
+              }`}>
+                B
               </span>
             </Link>
           </motion.div>

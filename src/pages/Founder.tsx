@@ -4,8 +4,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown, Sparkles, Terminal, Camera, ShieldAlert, Layers } from 'lucide-react';
 import Nav from '../components/Nav';
-import Experience from '../components/Experience';
 import ContactCTA from '../components/ContactCTA';
+import Footer from '../components/Footer';
 
 import { founderIntroData } from '../data/founderIntro';
 import { journeyMilestones } from '../data/journey';
@@ -432,7 +432,8 @@ function Differentiator() {
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs text-white/60 font-mono">
                 <span className="flex items-center gap-1.5"><Terminal size={14} className="text-emerald-400" /> Engineering Commits</span>
-                <span>1,420 Commits / Year</span>
+                {/* Note: This static number should eventually switch to the live API integration once extended. */}
+                <span>~379 Commits / Year</span>
               </div>
               <div className="flex flex-wrap gap-1.5 justify-center bg-black/40 p-4 rounded-xl border border-white/5">
                 {codeContributions.map((item, idx) => {
@@ -517,13 +518,19 @@ export default function Founder() {
       {/* Section 4: The Differentiator (Two Lives + What Didn't Work) */}
       <Differentiator />
 
-      {/* Section 5: Professional Experience */}
-      <div className="border-t border-white/10 py-16">
-        <Experience />
-      </div>
+      {/* Section 5: Professional Experience (Coming Soon) */}
+      <section className="relative w-full py-24 bg-[#0a0a0a] border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-[#BA3E2B] font-bold mb-4">Professional Experience</p>
+          <div className="p-12 md:p-20 rounded-3xl bg-[#0c0e14] border border-white/5 border-dashed flex flex-col items-center justify-center">
+            <h2 className="text-3xl md:text-5xl font-serif italic text-white/40">Coming Soon</h2>
+          </div>
+        </div>
+      </section>
 
       {/* Global Contact CTA */}
       <ContactCTA />
+      <Footer />
     </div>
   );
 }

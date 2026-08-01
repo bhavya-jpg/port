@@ -6,10 +6,21 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Disable native scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // Force scroll to top on route change immediately
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 50);
+      window.scrollTo(0, 0);
+    }, 100);
+    
     return () => clearTimeout(timer);
   }, [pathname]);
 

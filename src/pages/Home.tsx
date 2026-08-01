@@ -2,9 +2,10 @@ import Nav from '../components/Nav';
 import CameraRevealHero from '../components/CameraRevealHero';
 import CategoryStack from '../components/home/CategoryStack';
 import About from '../components/About';
-import Recognition from '../components/home/Recognition';
+import CharacterSection from '../components/home/CharacterSection';
 import HowIWork from '../components/home/HowIWork';
 import ContactCTA from '../components/ContactCTA';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -14,10 +15,11 @@ export default function Home() {
       <main>
         <CategoryStack />
         <About />
-        <Recognition />
+        <CharacterSection />
         <HowIWork />
         <ContactCTA />
       </main>
+      <Footer />
     </>
   );
 }

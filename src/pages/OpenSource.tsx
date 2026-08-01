@@ -4,6 +4,7 @@ import OpenSourcePrograms from '../components/OpenSourcePrograms';
 import Achievements from '../components/Achievements';
 import Communities from '../components/Communities';
 import ContactCTA from '../components/ContactCTA';
+import Footer from '../components/Footer';
 
 export default function OpenSource() {
   return (
@@ -17,6 +18,7 @@ export default function OpenSource() {
         <Communities />
         <ContactCTA />
       </main>
+      <Footer />
     </div>
   );
 }

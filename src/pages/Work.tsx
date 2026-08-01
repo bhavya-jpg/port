@@ -6,6 +6,7 @@ import TechStack from '../components/TechStack';
 import ContactCTA from '../components/ContactCTA';
 import { projectsData, ProjectData } from '../data/projects';
 import ProjectDetailModal from '../components/ProjectDetailModal';
+import Footer from '../components/Footer';
 
 type FilterType = 'engineering' | 'cinematography';
 
@@ -159,6 +160,7 @@ export default function Work() {
         projectIndex={selectedProject ? filteredProjects.findIndex(p => p.id === selectedProject.id) : 0}
         totalProjects={filteredProjects.length}
       />
+      <Footer />
     </div>
   );
 }

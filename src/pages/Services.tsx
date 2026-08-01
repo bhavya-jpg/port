@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Sparkles, Star } from 'lucide-react';
 import Nav from '../components/Nav';
 import ContactCTA from '../components/ContactCTA';
+import Footer from '../components/Footer';
 
 const servicesList = [
   {
@@ -193,6 +194,7 @@ export default function Services() {
       </section>
 
       <ContactCTA />
+      <Footer />
     </div>
   );
 }
