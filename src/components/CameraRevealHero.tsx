@@ -196,7 +196,12 @@ export default function CameraRevealHero() {
       ScrollTrigger.refresh();
     }, 150);
 
+    // Only re-init on width changes: mobile browsers fire resize when the URL bar
+    // collapses/expands during scroll, and rebuilding the pinned timeline then causes jumps.
+    let lastWidth = window.innerWidth;
     const handleResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       clearTimeout(resizeTimeout);
       resizeTimeout = window.setTimeout(() => {
         initGSAP();

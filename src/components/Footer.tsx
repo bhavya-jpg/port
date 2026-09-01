@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Linkedin, Instagram, Mail, Github } from 'lucide-react';
 import { contactData } from '../data/contact';
 

@@ -216,7 +216,7 @@ export function MagneticSpotlightMarquee({
   return (
     <section
       ref={containerRef}
-      className={`spotlight relative w-full h-[100vh] min-h-[800px] overflow-hidden bg-[#09090b] text-white font-sans ${className}`}
+      className={`spotlight relative w-full h-[100vh] min-h-[700px] md:min-h-[800px] overflow-hidden bg-[#09090b] text-white font-sans ${className}`}
       style={{ fontFamily: "'Instrument Sans', sans-serif" }}
     >
       {/* Marquee Strip */}
@@ -249,7 +249,7 @@ export function MagneticSpotlightMarquee({
       >
         {/* Title */}
         <h1 
-          className="text-[15vw] md:text-[12rem] font-normal leading-[0.85] tracking-tighter mb-20 text-center flex flex-col items-center"
+          className="text-[15vw] md:text-[12rem] font-normal leading-[0.85] tracking-tighter mb-12 md:mb-20 text-center flex flex-col items-center"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
           {title.map((line, idx) => (

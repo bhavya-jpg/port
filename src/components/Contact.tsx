@@ -20,6 +20,12 @@ export default function Contact() {
     }
     formData.append('access_key', accessKey);
 
+    // Personalized subject + sender identity improve inbox placement
+    const senderName = (formData.get('name') as string) || 'Portfolio Visitor';
+    formData.set('subject', `Portfolio inquiry from ${senderName}`);
+    formData.append('from_name', senderName);
+    formData.append('replyto', (formData.get('email') as string) || '');
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -85,38 +91,40 @@ export default function Contact() {
           className="w-full h-full bg-[#111111] border border-white/5 p-8 md:p-12 lg:p-14 rounded-[2rem] shadow-2xl flex flex-col justify-center"
         >
           <form onSubmit={handleSubmit} className="space-y-6 w-full">
-            <input type="hidden" name="subject" value="New Project Inquiry from Portfolio!" />
+            <input type="hidden" name="subject" value="New Project Inquiry from Portfolio" />
+            {/* Honeypot: hidden from humans; bots that fill it get silently discarded by Web3Forms */}
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-white/70">Name*</label>
-                <input required type="text" id="name" name="name" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors" />
+                <input required type="text" id="name" name="name" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-white/70">Email*</label>
-                <input required type="email" id="email" name="email" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors" />
+                <input required type="email" id="email" name="email" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="brand" className="text-sm font-medium text-white/70">Brand's Name</label>
-                <input type="text" id="brand" name="brand" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors" />
+                <input type="text" id="brand" name="brand" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="website" className="text-sm font-medium text-white/70">Website / Account Link</label>
-                <input type="text" id="website" name="website" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors" />
+                <input type="text" id="website" name="website" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="budget" className="text-sm font-medium text-white/70">Budget Estimate</label>
-                <input type="text" id="budget" name="budget" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors" />
+                <input type="text" id="budget" name="budget" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="services" className="text-sm font-medium text-white/70">Services Required</label>
-                <select id="services" name="services" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors appearance-none cursor-pointer">
+                <select id="services" name="services" className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors appearance-none cursor-pointer">
                   <option value="Website Design">Website Design</option>
                   <option value="AI/SaaS Design">AI/SaaS Design</option>
                   <option value="Both">Both</option>
@@ -127,7 +135,7 @@ export default function Contact() {
 
             <div className="space-y-2">
               <label htmlFor="brief" className="text-sm font-medium text-white/70">Project Brief*</label>
-              <textarea required id="brief" name="brief" rows={4} className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-white focus:border-white/40 focus:outline-none transition-colors resize-none"></textarea>
+              <textarea required id="brief" name="brief" rows={4} className="w-full bg-[#18181B] border border-white/10 rounded-lg py-3 px-4 text-[16px] text-white focus:border-white/40 focus:outline-none transition-colors resize-none"></textarea>
             </div>
 
             <p className="text-xs text-[#71717A] leading-relaxed mt-4">

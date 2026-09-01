@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -98,7 +99,7 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center relative z-50 shadow-md pointer-events-auto"
+            className="md:hidden w-12 h-12 rounded-full bg-white flex items-center justify-center relative z-50 shadow-md"
             aria-label="Open menu"
           >
             <div className="flex flex-col gap-1.5">
@@ -109,7 +110,10 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
         </div>
       </header>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay — portaled to <body>: GSAP's ScrollTrigger pin reparents
+          sibling sections into pin-spacers, so inserting the overlay as a React
+          sibling of the pinned hero crashes with insertBefore/NotFoundError. */}
+      {createPortal(
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -117,7 +121,7 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
             animate={{ clipPath: 'inset(0 0 0% 0)' }}
             exit={{ clipPath: 'inset(0 0 100% 0)' }}
             transition={{ duration: 0.6, ease: [0.83, 0, 0.17, 1] }}
-            className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center gap-7 px-6 overflow-y-auto"
           >
             <button
               onClick={() => setMenuOpen(false)}
@@ -135,7 +139,7 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
                 <Link
                   to={l.href}
                   onClick={() => setMenuOpen(false)}
-                  className="font-serif text-5xl italic font-medium text-white"
+                  className="font-serif text-4xl sm:text-5xl italic font-medium text-white text-center block leading-tight"
                 >
                   {l.label}
                 </Link>
@@ -143,7 +147,9 @@ export default function Nav({ hideOnTop = false }: { hideOnTop?: boolean }) {
             ))}
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </>
   );
 }

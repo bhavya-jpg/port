@@ -90,12 +90,25 @@ function JourneyRoadmap() {
   const progressPathRef = useRef<SVGPathElement>(null);
   const markerRef = useRef<SVGGElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  // The pinned serpentine road relies on percentage-positioned cards that only
+  // line up with the SVG at desktop aspect ratios — phones get a vertical timeline.
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // 3-Tier Serpentine Road SVG Path (viewBox="0 0 1000 800")
   // Row 1: y=150, Row 2: y=410, Row 3: y=670 with cubic bezier U-turns
   const pathD = "M 100 150 L 820 150 C 950 150, 950 410, 820 410 L 180 410 C 50 410, 50 670, 180 670 L 900 670";
 
   useIsomorphicLayoutEffect(() => {
+    if (!isDesktop) return;
     if (!sectionRef.current || !progressPathRef.current || !basePathRef.current || !markerRef.current) return;
 
     const path = basePathRef.current;
@@ -146,7 +159,7 @@ function JourneyRoadmap() {
     return () => {
       if (ctx) ctx.revert();
     };
-  }, []);
+  }, [isDesktop]);
 
   // 9 Checkpoint milestones mapped with ZERO overlap coordinates (positioned strictly outside tube stroke area)
   // Row 1 tube is y=118..182. Top text is top: '2%' (y≈16), Bottom text is top: '26%' (y≈208).
@@ -177,10 +190,47 @@ function JourneyRoadmap() {
         <div className="text-center max-w-2xl mx-auto mb-4 space-y-2">
           <p className="text-[11px] uppercase tracking-[0.3em] text-[#FF6B8B] font-mono font-bold">The Evolution</p>
           <h2 className="text-4xl md:text-6xl font-serif italic text-white tracking-wide">Journey Roadmap</h2>
-          <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed">Scroll to travel the winding path. Checkpoints reveal instantly as the camera arrives.</p>
+          <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed">
+            {isDesktop
+              ? 'Scroll to travel the winding path. Checkpoints reveal instantly as the camera arrives.'
+              : 'The milestones that shaped the dual path, year by year.'}
+          </p>
         </div>
 
-        {/* Serpentine Tube Road Container */}
+        {/* Mobile: simple vertical timeline (no pin, no absolute positioning) */}
+        {!isDesktop && (
+          <div className="relative pl-9 mt-10 mb-4 max-w-md mx-auto">
+            <div className="absolute left-[9px] top-2 bottom-2 w-1 rounded-full bg-gradient-to-b from-[#38BDF8] via-[#A78BFA] to-[#F43F5E]" />
+            <div className="space-y-7">
+              {journeyMilestones.map((m) => (
+                <motion.div
+                  key={m.id}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  className="relative"
+                >
+                  <span className="absolute -left-[31px] top-2 w-5 h-5 rounded-full bg-[#F43F5E] border-2 border-white shadow-lg" />
+                  <div className="bg-[#090b10]/90 px-4 py-3.5 rounded-xl border border-white/15 shadow-xl space-y-1.5">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#F43F5E]/20 border border-[#F43F5E]/40 text-[#FF6B8B] font-mono font-black text-[11px] tracking-wider">
+                        {m.year}
+                      </span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
+                        {m.tag}
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-extrabold text-[#F8FAFC] leading-snug">{m.title}</h4>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Serpentine Tube Road Container (desktop only) */}
+        {isDesktop && (
         <div className="relative w-full max-w-5xl mx-auto h-[550px] sm:h-[650px] md:h-[750px] my-2">
           
           {/* SVG Serpentine Tube Road */}
@@ -269,6 +319,7 @@ function JourneyRoadmap() {
           })}
 
         </div>
+        )}
 
       </div>
     </section>
